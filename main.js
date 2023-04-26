@@ -23,7 +23,7 @@ window.addEventListener("load", () => {
 
   function setQuestion(wordList) {
     //HTMLその2を適用
-    const answerSceneHTML = '<div id="question-wrapper"><p id="question"></p><div><select name="answer-list" id="answer-list"><option value=""></option></select><a class="block-link button answer">解答</a></div></div>'
+    const answerSceneHTML = '<div id="question-wrapper"><p id="question"></p><div class="answer-input"><select name="answer-list" id="answer-list"><option value=""></option></select><a class="block-link button answer">解答</a></div></div>'
     wrapper.innerHTML = answerSceneHTML;
     //要素取得
     const questionWrapper = document.getElementById("question-wrapper");
