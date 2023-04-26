@@ -71,3 +71,7 @@ body {
 .next {
   cursor: pointer;
 }
+
+.check-answer {
+  margin-bottom: 20px;
+}
