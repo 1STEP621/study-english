@@ -50,9 +50,9 @@ window.addEventListener("load", () => {
 
     answerBtn.addEventListener("click", () => {
       if (answerList.value === english) {
-        questionWrapper.innerHTML = '<p>正解！</p><img src="correct.svg" alt="正解" width="150"><a class="block-link button next">次へ</a>';
+        questionWrapper.innerHTML = '<p>正解！</p><img src="correct.svg" alt="正解" width="150" height="150" class="check-answer"><a class="block-link button next">次へ</a>';
       } else {
-        questionWrapper.innerHTML = '<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150"><a class="block-link button next">次へ</a>';
+        questionWrapper.innerHTML = '<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><a class="block-link button next">次へ</a>';
       }
       const nextBtn = document.getElementsByClassName("next")[0];
       nextBtn.addEventListener("click", () => {
