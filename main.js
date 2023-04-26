@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 
   if (location.search === "") {
     //HTML用意
-    const inputSceneHTML = '<textarea id="english" placeholder="改行で区切ってください。"></textarea><a class="block-link button finish-input">入力をおわる</a>';
+    const inputSceneHTML = '<textarea id="english" placeholder="英語(半角スペース)日本語&#10;英語(半角スペース)日本語&#10;︙"></textarea><a class="block-link button finish-input">入力をおわる</a>';
   
     //HTMLその1適用
     wrapper.insertAdjacentHTML("afterbegin", inputSceneHTML);
