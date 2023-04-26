@@ -52,7 +52,7 @@ window.addEventListener("load", () => {
       if (answerList.value === english) {
         questionWrapper.innerHTML = '<p>正解！</p><img src="correct.svg" alt="正解" width="150" height="150" class="check-answer"><a class="block-link button next">次へ</a>';
       } else {
-        if (answerList.value === "入力してください") {
+        if (answerList.value === "選択してください") {
           questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたは未回答でした。</p><a class="block-link button next">次へ</a>`;
         } else {
           questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたの答えは${answerList.value}でした。</p><a class="block-link button next">次へ</a>`;
