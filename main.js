@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 
   if (location.search === "") {
     //HTML用意
-    const inputSceneHTML = '<textarea id="english" placeholder="英語(半角スペース)日本語&#10;英語(半角スペース)日本語&#10;︙"></textarea><a class="block-link button finish-input">入力をおわる</a>';
+    const inputSceneHTML = '<p>英単語と日本語のペアを入力してください。その中からランダムに選んで出題します。</p><textarea id="english" placeholder="英語(半角スペース)日本語&#10;英語(半角スペース)日本語&#10;︙"></textarea><a class="block-link button finish-input">入力をおわる</a>';
   
     //HTMLその1適用
     wrapper.insertAdjacentHTML("afterbegin", inputSceneHTML);
@@ -15,10 +15,10 @@ window.addEventListener("load", () => {
   
     //入力をおわるボタンがクリックされたら
     finishInputBtn.addEventListener("click", () => {
-      setQuestion(inputArea.value.split("\n"));
+      setQuestion(inputArea.value.split("\n").sort());
     });
   } else {
-    setQuestion(decodeURI(location.search).split("=")[1].split("{{br}}"));
+    setQuestion(decodeURI(location.search).split("=")[1].split("{{br}}").sort());
   }
 
   function setQuestion(wordList) {
