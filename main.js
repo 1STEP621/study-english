@@ -15,7 +15,7 @@ window.addEventListener("load", () => {
   
     //入力をおわるボタンがクリックされたら
     finishInputBtn.addEventListener("click", () => {
-      history.pushState(null, "", "https://1step621.github.io/study-english/?input=" + inputArea.value.replace("{{br}}"));
+      history.pushState(null, "", "https://1step621.github.io/study-english/?input=" + inputArea.value.replace("\n", "{{br}}"));
       setQuestion(inputArea.value.split("\n").sort());
     });
   } else {
