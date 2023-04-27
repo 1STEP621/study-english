@@ -38,10 +38,10 @@ window.addEventListener("load", () => {
     const answerBtn = document.getElementsByClassName("answer")[0];
 
     //単語をランダムに選ぶ
-    const word = wordList[Math.floor(Math.random() * wordList.length + 1)];
+    const word = wordList[Math.floor(Math.random() * wordList.length + 1)].split(" ");
     //日本語部分と英語部分を取り出す
-    const japanese = word.split(" ").slice(-1).join(" ");
-    const english = word.split(" ").slice(0, -1).join(" ");
+    const japanese = word.slice(-1).join(" ");
+    const english = word.slice(0, -1).join(" ");
     //画面上に反映
     question.innerText = japanese;
     wordList.forEach(word => {
