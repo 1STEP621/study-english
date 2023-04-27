@@ -77,17 +77,18 @@ window.addEventListener("load", () => {
         } else {
           questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたの答えは${answerList.value}でした。</p><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>`;
         }
-
-        const copyUrlBtn = document.getElementsByClassName("copy-url")[0];
-        //urlのコピー
-        copyUrlBtn.addEventListener("click", () => {
-          navigator.clipboard.writeText(encodeURI("https://1step621.github.io/study-english/?input=" + wordPairList.join("{{br}}")));
-          copyUrlBtn.innerText = "コピーしました";
-          setTimeout(() => {
-            copyUrlBtn.innerText = "問題のURLをコピー";
-          }, 1000);
-        });
       }
+
+      //要素の取得
+      const copyUrlBtn = document.getElementsByClassName("copy-url")[0];
+      //urlのコピー
+      copyUrlBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(encodeURI("https://1step621.github.io/study-english/?input=" + wordPairList.join("{{br}}")));
+        copyUrlBtn.innerText = "コピーしました";
+        setTimeout(() => {
+          copyUrlBtn.innerText = "問題のURLをコピー";
+        }, 1000);
+      });
 
       //要素の取得
       const nextBtn = document.getElementsByClassName("next")[0];
