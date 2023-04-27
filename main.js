@@ -7,11 +7,11 @@ window.addEventListener("load", () => {
     //HTMLその1適用
     const inputSceneHTML = '<p>英単語と日本語のペアを入力してください。その中からランダムに選んで出題します。</p><textarea id="english" placeholder="英語(半角スペース)日本語&#10;英語(半角スペース)日本語&#10;︙"></textarea><a class="block-link button finish-input">入力をおわる</a>';
     wrapper.innerHTML = inputSceneHTML;
-  
+
     //要素取得
     const finishInputBtn = document.getElementsByClassName("finish-input")[0];
     const inputArea = document.getElementById("english");
-  
+
     //入力をおわるボタンがクリックされたら
     finishInputBtn.addEventListener("click", () => {
       //setQuestionに入力の配列を渡して開始
@@ -58,28 +58,40 @@ window.addEventListener("load", () => {
       answerList.appendChild(optionElem);
     });
 
+    //urlのコピー
     copyUrlBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText("https://1step621.github.io/study-english/?input=" + wordPairList.join("{{br}}").replace(" ", "%20"));
+      navigator.clipboard.writeText(encodeURI("https://1step621.github.io/study-english/?input=" + wordPairList.join("{{br}}")));
       copyUrlBtn.innerText = "コピーしました";
       setTimeout(() => {
         copyUrlBtn.innerText = "問題のURLをコピー";
       }, 1000);
     });
 
+    //答え合わせ
     answerBtn.addEventListener("click", () => {
-      //答え合わせ
       if (answerList.value === english) {
-        questionWrapper.innerHTML = '<p>正解！</p><img src="correct.svg" alt="正解" width="150" height="150" class="check-answer"><a class="block-link button next">次へ</a>';
+        questionWrapper.innerHTML = '<p>正解！</p><img src="correct.svg" alt="正解" width="150" height="150" class="check-answer"><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>';
       } else {
         if (answerList.value === "選択してください") {
-          questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたは未回答でした。</p><a class="block-link button next">次へ</a>`;
+          questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたは未回答でした。</p><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>`;
         } else {
-          questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたの答えは${answerList.value}でした。</p><a class="block-link button next">次へ</a>`;
+          questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたの答えは${answerList.value}でした。</p><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>`;
         }
+
+        const copyUrlBtn = document.getElementsByClassName("copy-url")[0];
+        //urlのコピー
+        copyUrlBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText(encodeURI("https://1step621.github.io/study-english/?input=" + wordPairList.join("{{br}}")));
+          copyUrlBtn.innerText = "コピーしました";
+          setTimeout(() => {
+            copyUrlBtn.innerText = "問題のURLをコピー";
+          }, 1000);
+        });
       }
 
       //要素の取得
       const nextBtn = document.getElementsByClassName("next")[0];
+      //次へボタンがクリックされたとき
       nextBtn.addEventListener("click", () => {
         //次の問題へ
         setQuestion(wordPairList);
