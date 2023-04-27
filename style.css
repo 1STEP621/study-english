@@ -13,6 +13,7 @@ body {
   flex: 1;
 }
 
+/*##############################*/
 #english {
   flex: 1;
   width: 100%;
@@ -49,19 +50,14 @@ body {
   border: 0;
   border-radius: 10px;
   background-color: var(--primary-light);
-}
-
-.answer-input {
-  display: flex;
-  width: 350px;
-  max-width: 100%;
+  position: relative;
 }
 
 #answer-list {
-  flex: 1;
   height: 100%;
   font-family: "Noto Sans JP";
   border-radius: 10px;
+  width: 300px;
   display: inline-block;
   margin-right: 10px;
   padding-left: 10px;
@@ -72,6 +68,12 @@ body {
   cursor: pointer;
 }
 
-.check-answer {
-  margin-bottom: 20px;
+.copy-url {
+  position: absolute;
+  right: auto;
+  bottom: 20px;
+  background-color: var(--gray);
+  font-size: var(--small-size);
+  padding: 10px;
+  cursor: pointer;
 }
