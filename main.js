@@ -14,8 +14,7 @@ window.addEventListener("load", () => {
   
     //入力をおわるボタンがクリックされたら
     finishInputBtn.addEventListener("click", () => {
-      //次回以降も同じ問題にアクセスするためクエリパラメータを付与・setQuestionに入力の配列を渡して開始
-      history.pushState(null, "", "https://1step621.github.io/study-english/?input=" + inputArea.value.replace("\n", "{{br}}"));
+      //setQuestionに入力の配列を渡して開始
       const questionsList = inputArea.value.split("\n");
       setQuestion(questionsList);
     });
@@ -23,12 +22,14 @@ window.addEventListener("load", () => {
     //クエリパラメータの内容を加工して配列にし、setQuestionに渡す
     const questionsList = decodeURI(location.search).split("=")[1].split("{{br}}")
     setQuestion(questionsList);
+    //そのままだとURLでバレバレなので隠す
+    history.replaceState(null, "", "https://1step621.github.io/study-english/");
   }
 
   function setQuestion(wordPairList) {
     wordPairList = wordPairList.sort()
     //HTMLその2を適用
-    const answerSceneHTML = '<div id="question-wrapper"><p id="question"></p><div class="answer-input"><select name="answer-list" id="answer-list"><option value="選択してください">選択してください</option></select><a class="block-link button answer">解答</a></div></div>'
+    const answerSceneHTML = '<div id="question-wrapper"><p id="question"></p><div class="answer-input"><select name="answer-list" id="answer-list"><option value="選択してください">選択してください</option></select><a class="block-link button answer">解答</a></div><a class="block-link button copy-url">問題のURLをコピー</a></div>'
     wrapper.innerHTML = answerSceneHTML;
 
     //要素取得
@@ -36,6 +37,7 @@ window.addEventListener("load", () => {
     const question = document.getElementById("question");
     const answerList = document.getElementById("answer-list");
     const answerBtn = document.getElementsByClassName("answer")[0];
+    const copyUrlBtn = document.getElementsByClassName("copy-url")[0];
 
     //単語をランダムに選ぶ
     console.log(wordPairList);
@@ -54,6 +56,11 @@ window.addEventListener("load", () => {
       optionElem.value = option;
       optionElem.innerText = option;
       answerList.appendChild(optionElem);
+    });
+
+    copyUrlBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText("https://1step621.github.io/study-english/?input=" + wordPairList.join("{{br}}").replace(" ", "%20"));
+      alert("コピーしました");
     });
 
     answerBtn.addEventListener("click", () => {
