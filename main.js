@@ -21,9 +21,9 @@ window.addEventListener("load", () => {
   } else {
     //クエリパラメータの内容を加工して配列にし、setQuestionに渡す
     const questionsList = decodeURI(location.search).split("=")[1].split("{{br}}")
-    setQuestion(questionsList);
     //そのままだとURLでバレバレなので隠す
     history.replaceState(null, "", "https://1step621.github.io/study-english/");
+    setQuestion(questionsList);
   }
 
   function setQuestion(wordPairList) {
