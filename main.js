@@ -72,12 +72,15 @@ window.addEventListener("load", () => {
       if (answerList.value === english) {
         questionWrapper.innerHTML = '<p>正解！</p><img src="correct.svg" alt="正解" width="150" height="150" class="check-answer"><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>';
       } else {
+        questionWrapper.innerHTML = '<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p id="wrong-answer-check"></p><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>';
+        const wrongAnswerCheck = document.getElementById("wrong-answer-check");
         if (answerList.value === "選択してください") {
-          questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたは未回答でした。</p><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>`;
+          wrongAnswerCheck.innerText = `正しい解答は${english}で、あなたは未回答でした。`;
         } else {
-          questionWrapper.innerHTML = `<p>間違い...</p><img src="incorrect.svg" alt="不正解" width="150" height="150" class="check-answer"><p>正解は${english}で、あなたの答えは${answerList.value}でした。</p><a class="block-link button next">次へ</a><a class="block-link button copy-url">問題のURLをコピー</a>`;
+          wrongAnswerCheck.innerText = `正しい解答は${english}で、あなたの解答は${answerList.value}でした。`
         }
       }
+      
 
       //要素の取得
       const copyUrlBtn = document.getElementsByClassName("copy-url")[0];
